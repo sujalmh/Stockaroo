@@ -175,12 +175,12 @@ def add_info():
 
 
             result = {
-        "Income": income,
-        "Expenditure": expenditure,
+        "Income": f"₹ {income:.2f}",
+        "Expenditure": f"₹ {expenditure:.2f}",
         "Risk Appetite": risk_appetite,
         "Savings Percent": f"{savings_percent:.2f}%",
         "Suggested Risk": risk_suggestion,
-        "Leftover": leftover
+        "Leftover": f"₹ {leftover:.2f}"
     }
     
         
@@ -190,7 +190,6 @@ def add_info():
             plot_image = None
         
         top_5_stocks = [(str(ticker)[:-3], stock_name[tickers.index(ticker)], number,np.float64(number)*latest_prices[ticker]) for ticker, (ticker,number) in zip(tickers, alloc.items())][:5]
-
 
     return render_template("add_info.html", result=result, plot_image=plot_image, top_5_stocks=top_5_stocks, table_data=table_data)
 
@@ -213,5 +212,5 @@ def generate_plot(ratio, name):
     return img_base64
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
 
