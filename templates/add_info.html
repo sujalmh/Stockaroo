@@ -3,6 +3,9 @@
 
 <head>
     <title>Add Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/add_info.css') }}" />
+
 </head>
 
 <body>
@@ -23,7 +26,7 @@
     </form>
 
     {% if result %}
-    <table class="table table-bordered">
+    <table class="table table-bordered styled-table">
         <thead>
             <tr>
                 <th scope="col">Parameter</th>
@@ -44,13 +47,13 @@
     </table>
 
     <h2>Top 5 Stocks:</h2>
-    <table>
-        <tr>
+    <table class="styled-table">
+        <thead>
             <th>Stock Symbol</th>
             <th>Stock Name</th>
             <th>Number of Stocks</th>
             <th>Amount</th>
-        </tr>
+        </thead>
         {% for stock, stock_name, amount, number in top_5_stocks %}
         <tr>
             <td>{{ stock }}</td>
@@ -68,10 +71,10 @@
 
     {% if plot_image %}
     <h2>Plot:</h2>
-    <img src="data:image/png;base64,{{ plot_image }}" alt="Plot">
+    <img id="plot" src="data:image/png;base64,{{ plot_image }}" alt="Plot">
     {% endif %}
     <h2>Calculation Result:</h2>
-    <table border="1">
+    <table class="styled-table">
         <thead style="position: sticky; top: 0; background-color: white;">
             <tr>
                 <th>Parameter</th>
