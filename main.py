@@ -1,7 +1,7 @@
 import io
+
 import base64
 from bs4 import BeautifulSoup
-from urllib.request import urlopen, Request
 import requests
 import matplotlib
 import matplotlib.pyplot as plt
@@ -9,16 +9,11 @@ import matplotlib.pyplot as plt
 import yfinance as yf
 import numpy as np
 import pandas as pd
-import plotly_express as px
-import pandas_datareader as web
-from datetime import datetime, timedelta
-from scipy import optimize
 from pypfopt import risk_models
 from pypfopt import plotting
 from pypfopt import expected_returns
 from pypfopt import EfficientFrontier
 from pypfopt import DiscreteAllocation
-from collections import OrderedDict
 
 matplotlib.use("Agg")
 
@@ -206,14 +201,11 @@ def generate_plot(ratio, name):
     top_5_indices = sorted_indices[:5]
 
     explode = [0.1 if i in top_5_indices else 0 for i in range(len(name))]
-    plt.figure(figsize=(15,10))
+    plt.figure(figsize=(8,8))
 
     plt.pie(ratio, labels=name,autopct='%1.2f%%',startangle=140)
     patches, texts = plt.pie(ratio, startangle=140)
     plt.legend(patches, name, loc="best")
-    img_buffer = io.BytesIO()
-    plt.legend(patches, name, loc="best")
-
     img_buffer = io.BytesIO()
     plt.savefig(img_buffer, format='png')
     img_base64 = base64.b64encode(img_buffer.getvalue()).decode()
@@ -221,4 +213,5 @@ def generate_plot(ratio, name):
     return img_base64
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host="0.0.0.0")
+

@@ -3,18 +3,23 @@
 
 <head>
     <title>Investor Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}" />
+
 </head>
 
 <body>
-    <h1>Investor Selection</h1>
-    <form method="POST">
-        <label for="user_type">Select an option:</label>
-        <input type="radio" name="user_type" value="existing"> Existing Investor
-        <input type="radio" name="user_type" value="new"> New Investor
-        <br><br>
-        <input type="submit" value="Continue">
-    </form>
-
+    <div class="container">
+        <h1>Investor Selection</h1>
+        <form method="POST">
+            <label for="user_type">Select an option:</label>
+            <input type="radio" name="user_type" value="existing"> Existing Investor
+            <input type="radio" name="user_type" value="new"> New Investor
+            <br><br>
+            <input type="submit" value="Continue">
+        </form>
+    </div>
 </body>
 
 </html>

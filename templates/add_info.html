@@ -3,101 +3,106 @@
 
 <head>
     <title>Add Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/add_info.css') }}" />
 
 </head>
 
 <body>
-    <h1>Add Information</h1>
-    <form method="POST">
-        <label for="income">Income:</label>
-        <input type="text" name="income" required>
-        <br><br>
-        <label for="expenditure">Expenditure:</label>
-        <input type="text" name="expenditure" required>
-        <br><br>
-        <label for="risk_appetite">Risk Appetite:</label>
-        <input type="radio" name="risk_appetite" value="low" required> Low
-        <input type="radio" name="risk_appetite" value="medium"> Medium
-        <input type="radio" name="risk_appetite" value="high"> High
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
-
+    <div class="container">
+        <h1>Add Information</h1>
+        <form method="POST">
+            <label for="income">Income:</label>
+            <input type="text" name="income" required>
+            <br><br>
+            <label for="expenditure">Expenditure:</label>
+            <input type="text" name="expenditure" required>
+            <br><br>
+            <label for="risk_appetite">Risk Appetite:</label>
+            <input type="radio" name="risk_appetite" value="low" required> Low
+            <input type="radio" name="risk_appetite" value="medium"> Medium
+            <input type="radio" name="risk_appetite" value="high"> High
+            <br><br>
+            <button type="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+    <br>
     {% if result %}
-    <table class="table table-bordered styled-table">
-        <thead>
+    <div class="container">
+        <h1>Savings Allocation:</h1>
+        <table class="table table-bordered styled-table">
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="container">
+
+        <h1>Top 5 Stocks:</h1>
+        <table class="styled-table">
+            <thead>
+                <th>Stock Symbol</th>
+                <th>Stock Name</th>
+                <th>Number of Stocks</th>
+                <th>Amount</th>
+            </thead>
+            {% for stock, stock_name, amount, number in top_5_stocks %}
             <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in table_data %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-
-    </table>
-
-    <h2>Top 5 Stocks:</h2>
-    <table class="styled-table">
-        <thead>
-            <th>Stock Symbol</th>
-            <th>Stock Name</th>
-            <th>Number of Stocks</th>
-            <th>Amount</th>
-        </thead>
-        {% for stock, stock_name, amount, number in top_5_stocks %}
-        <tr>
-            <td>{{ stock }}</td>
-            <td>{{ stock_name }}</td>
-            <td>{{ amount }}</td>
-            <td>{{ number }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-
-
-
-
-
-    {% if plot_image %}
-    <h2>Plot:</h2>
-    <img id="plot" src="data:image/png;base64,{{ plot_image }}" alt="Plot">
-    {% endif %}
-    <h2>Calculation Result:</h2>
-    <table class="styled-table">
-        <thead style="position: sticky; top: 0; background-color: white;">
-            <tr>
-                <th>Parameter</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for key, value in result.items() %}
-            <tr>
-                <td>{{ key }}</td>
-                <td>{{ value }}</td>
+                <td>{{ stock }}</td>
+                <td>{{ stock_name }}</td>
+                <td>{{ amount }}</td>
+                <td>₹ {{ number }}</td>
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
+        </table>
 
 
+    </div>
+    <br>
+    <div class="container">
 
+        {% if plot_image %}
+        <h1>Plot:</h1>
+        <img id="plot" src="data:image/png;base64,{{ plot_image }}" alt="Plot">
+        {% endif %}
+        <h1>Calculation Result:</h1>
+        <table class="styled-table">
+            <thead style="position: sticky; top: 0; background-color: white;">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in result.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div><br>
 
     <form method="GET" action="{{ url_for('add_info') }}">
-        <input type="submit" value="Restart Process">
+        <button type="submit" value="Restart Process">Try Again</button>
     </form>
     {% endif %}
+
 </body>
 
 </html>
