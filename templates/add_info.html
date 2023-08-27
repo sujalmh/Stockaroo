@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Information</title>
+</head>
+
+<body>
+    <h1>Add Information</h1>
+    <form method="POST">
+        <label for="income">Income:</label>
+        <input type="text" name="income" required>
+        <br><br>
+        <label for="expenditure">Expenditure:</label>
+        <input type="text" name="expenditure" required>
+        <br><br>
+        <label for="risk_appetite">Risk Appetite:</label>
+        <input type="radio" name="risk_appetite" value="low" required> Low
+        <input type="radio" name="risk_appetite" value="medium"> Medium
+        <input type="radio" name="risk_appetite" value="high"> High
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if result %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    </table>
+
+    <h2>Top 5 Stocks:</h2>
+    <table>
+        <tr>
+            <th>Stock Symbol</th>
+            <th>Stock Name</th>
+            <th>Number of Stocks</th>
+            <th>Amount</th>
+        </tr>
+        {% for stock, stock_name, amount, number in top_5_stocks %}
+        <tr>
+            <td>{{ stock }}</td>
+            <td>{{ stock_name }}</td>
+            <td>{{ amount }}</td>
+            <td>{{ number }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+
+    {% if plot_image %}
+    <h2>Plot:</h2>
+    <img src="data:image/png;base64,{{ plot_image }}" alt="Plot">
+    {% endif %}
+    <h2>Calculation Result:</h2>
+    <table border="1">
+        <thead style="position: sticky; top: 0; background-color: white;">
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in result.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+    <form method="GET" action="{{ url_for('add_info') }}">
+        <input type="submit" value="Restart Process">
+    </form>
+    {% endif %}
+</body>
+
+</html>
