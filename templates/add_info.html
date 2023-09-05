@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h1>Add Information</h1>
-        <form method="POST">
+        <form method="POST" action="/add_info">
             <label for="income" class="bold">Income:</label>
             <input type="text" name="income" required>
             <br><br>
@@ -51,22 +51,27 @@
     <br>
     <div class="container">
 
-        <h1>Top 5 Stocks:</h1>
+        <h1>Stocks Allocation:</h1>
         <table class="table-bordered styled-table">
             <thead>
-                <th>Stock Symbol</th>
-                <th>Stock Name</th>
-                <th>Number of Stocks</th>
-                <th>Amount</th>
+                <tr>
+                    <th>Stock Symbol</th>
+                    <th>Stock Name</th>
+                    <th>Number of Stocks</th>
+                    <th>Amount</th>
+                </tr>
             </thead>
-            {% for stock, stock_name, amount, number in top_5_stocks %}
-            <tr>
-                <td>{{ stock }}</td>
-                <td class="bold">{{ stock_name }}</td>
-                <td>{{ amount }}</td>
-                <td>₹ {{ number }}</td>
-            </tr>
-            {% endfor %}
+            <tbody>
+                {% for stock in all_stocks %}
+                <tr>
+                    <td>{{ stock[0] }}</td>
+                    <td>{{ stock[1] }}</td>
+                    <td>{{ stock[2] | round(2) }}</td>
+                    <td>{{ stock[3] | round(2) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
         </table>
 
 
@@ -78,6 +83,9 @@
         <h1>Plot:</h1>
         <img id="plot" src="data:image/png;base64,{{ plot_image }}" alt="Plot">
         {% endif %}
+    </div><br>
+    <div class="container">
+
         <h1>Calculation Result:</h1>
         <table class="table-bordered styled-table">
             <thead style="position: sticky; top: 0; background-color: white;">
