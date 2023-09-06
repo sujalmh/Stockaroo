@@ -57,7 +57,7 @@ def add_info():
         if risk_appetite=="low":
             link = f'https://www.screener.in/screens/1159293/top-25/'
 
-        elif risk_appetite=="mid":
+        elif risk_appetite=="medium":
             link = f'https://www.screener.in/screens/1151198/mid_cap/'
 
         else:
