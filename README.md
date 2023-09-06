@@ -1,4 +1,4 @@
-# Stockaroo - Investment Analysis
+# Stockaroo - Portfolio Construction and Optimization
 
 Stockaroo is a web-based investment analysis tool that helps you make informed investment decisions based on your income, expenditure, and risk appetite. It provides investment recommendations and allocation strategies tailored to your financial situation and risk tolerance.
 
