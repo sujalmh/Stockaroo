@@ -34,7 +34,7 @@ To get started with Stockaroo, follow these steps:
 
 ## Technologies Used
 
-- Python
+- https://img.shields.io/badge/Python-8A2BE2
 - Flask
 - HTML/CSS
 - BeautifulSoup
