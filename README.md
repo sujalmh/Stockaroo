@@ -46,8 +46,8 @@ To get started with Stockaroo, follow these steps:
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/stockaroo0.png)
-![Screenshot 2](/screenshots/stockaroo1.png)
+![Screenshot 1](/screenshots/stockaroo1.png)
+![Screenshot 2](/screenshots/stockaroo0.png)
 
 ## License
 
