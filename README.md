@@ -16,6 +16,18 @@ Stockaroo is a web-based investment analysis tool that helps you make informed i
 
 - **Interactive Pie Chart:** Visualize your investment allocation with an interactive pie chart, showing stock names and amounts.
 
+## Deployment
+
+This project has been deployed using Azure App Service for hosting the web application and Azure Container Registry for containerized deployment.
+
+### Azure App Service
+
+The Stockaroo web application is hosted on Azure App Service, a fully managed platform for building, deploying, and scaling web apps. Azure App Service offers high availability, automatic scaling, and easy integration with Azure services.
+
+### Azure Container Registry
+
+Azure Container Registry is used to store and manage Docker container images for the Stockaroo application. Docker containers make it easy to package the application and its dependencies, ensuring consistency and portability across different environments.
+
 ## Getting Started
 
 To get started with Stockaroo, follow these steps:
